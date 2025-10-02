@@ -1,8 +1,23 @@
-#First stage
-FROM node:18-alpine AS base
-
+# First stage: build app
+FROM node:18-alpine AS build
 WORKDIR /app
 
-COPY . .
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
+COPY . .
 RUN yarn install && yarn build
+
+# Second stage: serve the app and add non root user
+FROM node:18-alpine
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+WORKDIR /app
+
+RUN yarn global add serve
+COPY --from=build /app/build ./build
+
+RUN chown -R appuser:appgroup /app
+USER appuser
+
+EXPOSE 3000
+CMD ["serve","-s","build"]
