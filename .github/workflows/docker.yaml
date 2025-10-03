@@ -1,8 +1,48 @@
-#name: Build and Push
+name: Build and Push
 
-#on:
-#  push:
-#    branches:
-#      - main
-#  workflow_dispatch:
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
+env:
+  AWS_REGION: eu-west-2
+  ECR_REGISTRY: 193668171151.dkr.ecr.eu-west-2.amazonaws.com
+  ECR_REPO: threat-composer-app
+  IMAGE_TAG : ${{ github.sha }}
+
+  ACCESS_KEY: ${{ secrets.ACCESS_KEY}}
+  SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY}}
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps: 
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: AWS Configuration
+      uses: aws-actions/configure-aws-credentials@v3
+      with:
+        aws-access-key-id: ${{ secrets.ACCESS_KEY}}
+        aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY}}
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Docker Login to Aws 
+      run: |
+        aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
+
+    - name: Build Docker image
+      run: docker build -f ./app/Dockerfile -t $ECR_REGISTRY/$ECR_REPO:$IMAGE_TAG ./app
+
+    - name: Image vulnerability scan with Trivy
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPO }}:${{ env.IMAGE_TAG }}
+        format: table
+        exit-code: 0  
+    
+    - name: Push Docker image to ECR
+      run: docker push $ECR_REGISTRY/$ECR_REPO:$IMAGE_TAG
