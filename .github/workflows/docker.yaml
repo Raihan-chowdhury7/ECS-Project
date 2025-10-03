@@ -8,7 +8,7 @@ on:
 
 env:
   AWS_REGION: eu-west-2
-  ECR_REGISTRY: 193668171151.dkr.ecr.eu-north-1.amazonaws.com
+  ECR_REGISTRY: 193668171151.dkr.ecr.eu-west-2.amazonaws.com
   ECR_REPO: threat-composer-app
   IMAGE_TAG : ${{ github.sha }}
 
