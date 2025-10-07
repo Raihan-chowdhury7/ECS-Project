@@ -14,12 +14,13 @@ variable "vpc_name" {
   type = string
 }
 
-variable "azs" {
-  description = "List of availability zones to use"
-  type        = list(string)
-}
-
 variable "public_subnets" {
   description = "Map of two public subnets"
   type = map(string) 
 }
+
+variable "routetable_cidr" {
+  description = "CIDR of the route table"
+  type = string
+}
+
