@@ -24,3 +24,8 @@ variable "routetable_cidr" {
   type = string
 }
 
+variable "private_subnets" {
+  description = "Map of the two private subnets"
+  type = map(string)
+}
+

@@ -1,24 +1,3 @@
-#------VPC------
-variable "vpc_cidr" {
-  type = string
-}
-variable "vpc_name" {
-  type = string
-}
-
-variable "public_subnets" {
-  type = map(string)
-}
-
-variable "routetable_cidr" {
-  type = string
-}
-
-variable "private_subnets" {
-  type = map(string)
-}
-
-#------SGs------
 variable "protocol" {
   type = string
 }
@@ -43,3 +22,7 @@ variable "app_port" {
   type = number
 }
 
+variable "vpc_id" {
+  description = "ID of the VPC to attach security groups to"
+  type = string
+}
