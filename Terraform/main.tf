@@ -15,6 +15,6 @@ module "security_groups" {
   cidr_block = var.cidr_block
   alb_http_port = var.alb_http_port
   alb_https_port = var.alb_https_port
-  alb_egress_port = var.alb_egress_port
+  egress_port = var.egress_port
   app_port = var.app_port
 }

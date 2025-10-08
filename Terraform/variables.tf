@@ -35,7 +35,7 @@ variable "alb_https_port" {
   type = number
 }
 
-variable "alb_egress_port" {
+variable "egress_port" {
   type = number
 }
 
