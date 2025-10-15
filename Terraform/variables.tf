@@ -43,3 +43,78 @@ variable "app_port" {
   type = number
 }
 
+#------ALB------
+variable "alb_name" {
+  type = string
+}
+
+variable "tg_name" {
+  type = string
+}
+
+variable "healthy_threshold" {
+  type = number
+}
+
+variable "unhealthy_threshold" {
+  type = number
+}
+
+variable "timeout" {
+  type = number
+}
+
+variable "interval" {
+  type = number
+}
+
+variable "tg_port" {
+  type = number
+}
+
+variable "health_check_path" {
+  type = string
+}
+
+variable "ssl_policy" {
+  type = string
+}
+
+variable "https_listener_port" {
+  type = number
+}
+
+#------ACM------
+variable "domain_name" {
+  type = string
+}
+
+variable "validation_method" {
+  type = string
+}
+
+variable "hosted_zone_id" {
+  type = string
+}
+
+variable "subdomain_name" {
+  type = string
+}
+
+#------Route53------
+variable "sub_name" {
+  type = string
+}
+
+#------ECS------
+variable "cluster_name" {
+  type = string
+}
+
+variable "aws_region" {
+  type = string
+}
+
+variable "service_name" {
+  type = string
+}

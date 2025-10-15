@@ -23,7 +23,7 @@ variable "app_port" {
 }
 
 variable "vpc_id" {
-  description = "ID of the VPC to attach security groups to"
+  description = "ID of the VPC to attach security groups"
   type = string
 }
 
