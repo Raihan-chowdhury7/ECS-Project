@@ -21,7 +21,7 @@ resource "aws_lb_target_group" "this" {
 
   health_check {
     path                = var.health_check_path  
-    matcher             = "200-299"
+    matcher             = "200-399"
     interval            = var.interval
     timeout             = var.timeout
     healthy_threshold   = var.healthy_threshold
