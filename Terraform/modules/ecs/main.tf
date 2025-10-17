@@ -28,6 +28,10 @@ resource "aws_iam_role" "task_exec_role" {
   assume_role_policy = data.aws_iam_policy_document.ecs_task_assume_role_policy.json
 }
 
+resource "aws_iam_role_policy_attachment" "exec_policy" {
+  role       = aws_iam_role.task_exec_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+}
 
 resource "aws_ecs_task_definition" "service" {
   family = "service"
@@ -35,16 +39,17 @@ resource "aws_ecs_task_definition" "service" {
   network_mode = "awsvpc"
   cpu = 256
   memory = 512
-  execution_role_arn = "" #will add value once completed iam stuff
+  execution_role_arn = aws_iam_role.task_exec_role.arn
+
 
   container_definitions = jsonencode([
     {
-      name      = "" #how do i get this?
-      image     = "" #how do i get this?
+      name      = var.container_name
+      image     = var.ecr_image
       essential = true
       portMappings = [
         {
-          containerPort = 3000
+          containerPort = var.container_port
         }
       ]
       logConfiguration = {
@@ -52,8 +57,31 @@ resource "aws_ecs_task_definition" "service" {
       options = {
         awslogs-group = aws_cloudwatch_log_group.this.name
         awslogs-region = var.aws_region
+        awslogs-stream-prefix = var.service_name
+
       }
       }
     }
   ])
+}
+
+resource "aws_ecs_service" "this" {
+  name            = var.service_name
+  cluster         = aws_ecs_cluster.this.id
+  task_definition = aws_ecs_task_definition.service.arn
+  desired_count   = 0
+  launch_type = "FARGATE"
+
+  network_configuration {
+    subnets          = var.private_subnet_ids
+    security_groups  = [var.app_sg_id]
+    assign_public_ip = false
+  }
+
+  load_balancer {
+    target_group_arn = var.target_group_arn
+    container_name   = var.container_name
+    container_port   = var.container_port
+  }
+  
 }

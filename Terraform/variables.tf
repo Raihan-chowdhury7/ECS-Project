@@ -118,3 +118,15 @@ variable "aws_region" {
 variable "service_name" {
   type = string
 }
+
+variable "container_name" {
+  type = string
+}
+
+variable "ecr_image" {
+  type = string
+}
+
+variable "container_port" {
+  type = number
+}

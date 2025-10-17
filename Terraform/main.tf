@@ -55,12 +55,13 @@ module "route53" {
 
  module "ecs" {
    source = "./modules/ecs"
-#  vpc_id = module.vpc.vpc_id
-#  private_subnet_ids = module.vpc.private_subnet_ids
-#  app_sg_id = module.security.app_sg_id
-#  target_group_arn = module.lb.app_tg_arn
-#  ecr_image_uri = var.ecr_image_uri
+   private_subnet_ids = module.vpc.private_subnet_ids
+   app_sg_id = module.security_groups.alb_sg_id
+   target_group_arn = module.alb.target_group_arn
    cluster_name = var.cluster_name
    aws_region = var.aws_region
    service_name = var.service_name
+   container_name = var.container_name
+   ecr_image = var.ecr_image
+   container_port = var.container_port
 }

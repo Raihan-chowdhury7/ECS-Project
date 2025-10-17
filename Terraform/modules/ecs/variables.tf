@@ -19,3 +19,27 @@ variable "aws_region" {
 variable "service_name" {
   type = string
 }
+
+variable "container_name" {
+  type = string
+}
+
+variable "ecr_image" {
+  type = string
+}
+
+variable "target_group_arn" {
+  type = string
+}
+
+variable "container_port" {
+  type = number
+}
+
+variable "private_subnet_ids" {
+  type = list(string)
+}
+
+variable "app_sg_id" {
+  type = string
+}
