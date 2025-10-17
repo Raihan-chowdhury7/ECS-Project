@@ -30,7 +30,7 @@ resource "aws_security_group" "alb" {
 }
 
 resource "aws_security_group" "ecs" {
-  name = "ALB_SG"
+  name = "ECS_SG"
   description = "Security group for Elastic Container Service"
   vpc_id = var.vpc_id
 
