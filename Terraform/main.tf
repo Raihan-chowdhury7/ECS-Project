@@ -64,4 +64,5 @@ module "route53" {
    container_name = var.container_name
    ecr_image = var.ecr_image
    container_port = var.container_port
+   ecs_desired_count = var.ecs_desired_count
 }

@@ -130,3 +130,7 @@ variable "ecr_image" {
 variable "container_port" {
   type = number
 }
+
+variable "ecs_desired_count" {
+  type = number
+}

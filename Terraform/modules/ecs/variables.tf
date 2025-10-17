@@ -43,3 +43,7 @@ variable "private_subnet_ids" {
 variable "app_sg_id" {
   type = string
 }
+
+variable "ecs_desired_count" {
+  type = number
+}
