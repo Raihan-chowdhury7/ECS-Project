@@ -39,7 +39,7 @@ resource "aws_security_group" "ecs" {
     from_port = var.app_port
     to_port = var.app_port
     protocol = var.protocol
-    cidr_blocks = var.cidr_block
+    security_groups = [aws_security_group.alb.id]
   }
   
   egress{
@@ -47,6 +47,6 @@ resource "aws_security_group" "ecs" {
     from_port = var.egress_port
     to_port = var.egress_port
     protocol = "-1"
-    security_groups = [aws_security_group.alb.id]
+    cidr_blocks = var.cidr_block
   }
 }

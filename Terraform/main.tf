@@ -31,7 +31,7 @@ module "alb" {
   vpc_id = module.vpc.vpc_id
   alb_sg_id = module.security_groups.alb_sg_id
   public_subnet_ids = module.vpc.public_subnet_ids
-  ecs_security_group_id = module.security_groups.ecs_security_group_id
+  ecs_security_group_id = module.security_groups.ecs_sg_id
   certificate_arn= module.acm.certificate_arn
   alb_name = var.alb_name
   tg_name = var.tg_name
@@ -57,6 +57,7 @@ module "route53" {
    source = "./modules/ecs"
    private_subnet_ids = module.vpc.private_subnet_ids
    app_sg_id = module.security_groups.alb_sg_id
+   ecs_sg_id = module.security_groups.ecs_sg_id
    target_group_arn = module.alb.target_group_arn
    cluster_name = var.cluster_name
    aws_region = var.aws_region
