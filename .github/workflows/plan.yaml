@@ -15,7 +15,7 @@ jobs:
     - name: Checkoout repository
       uses: actions/checkout@v2
 
-    - name: Configure SWS credentials
+    - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v3
       with:
         aws-access-key-id: ${{ secrets.ACCESS_KEY}}
