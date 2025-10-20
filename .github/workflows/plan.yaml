@@ -12,7 +12,8 @@ jobs:
         working-directory: ./Terraform
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkoout repository
+      uses: actions/checkout@v2
 
     - name: Configure SWS credentials
       uses: aws-actions/configure-aws-credentials@v3
