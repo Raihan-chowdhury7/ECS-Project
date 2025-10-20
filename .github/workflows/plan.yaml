@@ -42,7 +42,7 @@ jobs:
         terraform validate
 
         echo "** Running Terraform Plan**"
-        terraform plan -var-file=dev.tfvars -out=plan.out
+        terraform plan -var-file=dev.tfvars
 
     - name: Set up TFLint
       uses: terraform-linters/setup-tflint@v4
