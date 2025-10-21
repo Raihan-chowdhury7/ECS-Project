@@ -6,6 +6,10 @@ on:
 jobs:
   terraform-destroy:
     runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./Terraform
 
     steps:
     - name: Checkoout repository
@@ -29,7 +33,7 @@ jobs:
         ${{ secrets.TF_VARS }}
         EOF
  
-    - name: Terraform init & apply
+    - name: Terraform init & destory
       run: |
         echo "** Running Terraform Init**"
         terraform init
