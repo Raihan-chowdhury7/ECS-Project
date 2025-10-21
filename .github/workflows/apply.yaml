@@ -1,8 +1,45 @@
-# name: Terraform Apply
+name: Terraform Apply
 
-# on:
-#   workflow_dispatch:
+on:
+  workflow_dispatch:
 
-# jobs:
-#   terraform-apply:
-#     runs-on: ubuntu-latest
+jobs:
+  terraform-apply:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./Terraform
+
+    steps:
+    - name: Checkoout repository
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v3
+      with:
+        aws-access-key-id: ${{ secrets.ACCESS_KEY}}
+        aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY}}
+        aws-region: eu-west-2
+
+    - name: Setup Terraform CLI
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.3.0
+
+    - name: Create dev.tfvars from secret
+      run: |
+        cat <<'EOF' > dev.tfvars
+        ${{ secrets.TF_VARS }}
+        EOF
+ 
+    - name: Terraform init & apply
+      run: |
+        echo "** Running Terraform Init**"
+        terraform init
+
+        echo "** Running Terraform Validate**"
+        terraform validate
+
+        echo "** Running Terraform Apply**"
+        terraform apply -var-file=dev.tfvars -auto-approve
