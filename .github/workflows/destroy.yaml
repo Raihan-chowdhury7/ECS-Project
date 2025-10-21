@@ -6,10 +6,6 @@ on:
 jobs:
   terraform-destroy:
     runs-on: ubuntu-latest
-    
-    defaults:
-      run:
-        working-directory: ./Terraform
 
     steps:
     - name: Checkoout repository
@@ -43,3 +39,4 @@ jobs:
 
         echo "** Running Terraform Destroy**"
         terraform destroy -var-file="dev.tfvars" -auto-approve
+      working-directory: Terraform

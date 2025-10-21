@@ -7,10 +7,6 @@ jobs:
   terraform-apply:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./Terraform
-
     steps:
     - name: Checkoout repository
       uses: actions/checkout@v2
@@ -43,3 +39,4 @@ jobs:
 
         echo "** Running Terraform Apply**"
         terraform apply -var-file=dev.tfvars -auto-approve
+      working-directory: Terraform
