@@ -5,7 +5,7 @@ resource "aws_lb" "this" {
   security_groups    = [var.alb_sg_id]
   subnets            = var.public_subnet_ids 
 
-  enable_deletion_protection = true
+  enable_deletion_protection = false
 
   tags = {
     Name = var.alb_name

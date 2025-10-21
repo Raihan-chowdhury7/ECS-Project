@@ -21,6 +21,7 @@ resource "aws_route53_record" "cert_validation" {
   name    = local.validation_option.resource_record_name
   type    = local.validation_option.resource_record_type
   records = [local.validation_option.resource_record_value]
+  allow_overwrite = true
   ttl     = 60
 }
 
