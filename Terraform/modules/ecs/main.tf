@@ -83,6 +83,6 @@ resource "aws_ecs_service" "this" {
     container_name   = var.container_name
     container_port   = var.container_port
   }
-  
+
   
 }
