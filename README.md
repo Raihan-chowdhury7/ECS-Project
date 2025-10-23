@@ -9,5 +9,5 @@ The setup was created to **automate the deployment** of the threat modelling too
 ## Architecture Diagram
 
 <p align="center">
-  <img src="images/architecture diagram.png" style="width:700px"/>
+  <img src="images/architechture diagram.png" style="width:700px"/>
 </p>
