@@ -2,10 +2,12 @@
 
 ## Overview
 
-This project deploys a containerised threat composer application into an **AWS ECS Fargate** using **Terraform**, whilst being automated using **Github Actions**
+This project deploys a containerised Threat Composer application on **AWS ECS Fargate** using **Terraform**, with the deployment fully automated through **GitHub Actions**.
 
-## Architechture Diagram
+The setup was created to **automate the deployment** of the threat modelling tool, eliminating the need to manually create AWS resources by leveraging **Infrastructure as Code (IaC)** using Terraform — just like it would be in a real-world production environment!
+
+## Architecture Diagram
 
 <p align="center">
-    <img src="images/architechture diagram.png" style= "width:700px"/>
+  <img src="images/architecture diagram.png" style="width:700px"/>
 </p>
