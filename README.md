@@ -6,12 +6,15 @@ This project deploys a containerised Threat Composer application on **AWS ECS Fa
 
 The setup was created to **automate the deployment** of the threat modelling tool, eliminating the need to manually create AWS resources by leveraging **Infrastructure as Code (IaC)** using Terraform — just like it would be in a real-world production environment!
 
+---
+
 ## Architecture Diagram
 
 <p align="center">
   <img src="images/architecture diagram.png" style="width:700px"/>
 </p>
 
+---
 
 ## Features
 
@@ -23,6 +26,7 @@ The setup was created to **automate the deployment** of the threat modelling too
   - Docker image build & push
   - Terraform plan, apply, and destroy
 
+---
 
 ## Project Structure
 
@@ -50,6 +54,7 @@ The setup was created to **automate the deployment** of the threat modelling too
         └── vpc/
 
 ```
+---
 
 ## Local app setup 💻
 
@@ -66,6 +71,7 @@ Or use:
 yarn global add serve
 serve -s build
 ```
+---
 
 ## Key Components
 
@@ -84,15 +90,11 @@ serve -s build
 - **VPC (Virtual Private Cloud)** – Provides a secure, isolated network for all AWS resources.
 - **Remote State (S3 + DynamoDB)** – Stores Terraform state files securely, ensuring changes are tracked and deployments remain consistent.
 
----
-
 ### CI/CD (GitHub Actions)
 - **Docker workflow** – Builds, scans, and uploads Docker images to Amazon ECR.
 - **ECR workflow** – Handles pushing container images to AWS Elastic Container Registry.
 - **Terraform workflows** – Automate the process of planning, applying, and destroying AWS infrastructure.
 - This automation ensures deployments are consistent, repeatable, and require minimal manual intervention.
-
----
 
 ### Deployment Workflow
 
