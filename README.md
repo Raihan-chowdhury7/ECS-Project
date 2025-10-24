@@ -79,7 +79,6 @@ serve -s build
 - The `Dockerfile` in the **app/** directory defines how the application is packaged into a container.
 - This ensures the app runs consistently across any environment — locally, in testing, or in production.
 
----
 
 ### Terraform (Infrastructure as Code)
 - **ECS Fargate** – Runs the containerised application without managing servers.
