@@ -26,6 +26,7 @@ The setup was created to **automate the deployment** of the threat modelling too
 
 ## Project Structure
 
+```
 ./
 ├── .github/
 │   └── workflows/
@@ -47,3 +48,5 @@ The setup was created to **automate the deployment** of the threat modelling too
         ├── ecs/
         ├── route53/
         └── vpc/
+
+```
