@@ -112,3 +112,43 @@ serve -s build
 
 4. **Terraform Destroy**
    - Safely removes all Terraform-managed AWS resources when no longer needed, ensuring a clean environment.
+
+---
+
+## Demonstration:
+
+# Domain Page:
+
+<p align="center">
+  <img src="images/Domain page.png" style="width:700px"/>
+</p>
+
+# SSL Certificate
+
+<p align="center">
+  <img src="images/SSL.png" style="width:700px"/>
+</p>
+
+# Docker Build and Push:
+
+<p align="center">
+  <img src="images/Docker.png" style="width:700px"/>
+</p>
+
+# Terraform Plan
+
+<p align="center">
+  <img src="images/Plan.png" style="width:700px"/>
+</p>
+
+# Terraform Apply
+
+<p align="center">
+  <img src="images/Apply.png" style="width:700px"/>
+</p>
+
+# Terraform Destroy:
+
+<p align="center">
+  <img src="images/Destroy.png" style="width:700px"/>
+</p>
